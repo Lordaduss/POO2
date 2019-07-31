@@ -1,0 +1,59 @@
+
+public class ContaBanco {
+	int conta;
+	double saldo;
+	
+	public ContaBanco(int conta) {
+		this.conta=conta;
+		this.saldo=0;
+	}
+	public ContaBanco(int conta,double saldo) {
+		this.conta=conta;
+		this.saldo=saldo;
+	}
+	public void deposito(double valor) {
+		saldo+=valor;
+	}
+	public void saque(double valor) {
+		saldo-=valor;
+	}
+	public double getSaldo() {
+		return saldo;
+	}
+	public int getNumConta() {
+		return conta;
+	}
+	public String toString() {
+		return "\n\nNumero da conta: " + this.conta + " \nSaldo da conta: " + this.saldo;
+	}
+}
+
+
+import java.util.ArrayList;
+public class UsaContaBanco {
+	public static void main(String[] args) {
+		ArrayList<ContaBanco> contalist = new ArrayList<>();
+		
+		contalist.add(new ContaBanco(1));
+		contalist.add(new ContaBanco(2));
+		contalist.add(new ContaBanco(3,100));
+		
+		System.out.println("\nTotal de contas: " + contalist.size());
+		System.out.println("Conteudos: " + contalist);
+		
+		contalist.get(0).deposito(200);
+		contalist.get(1).deposito(100);
+		contalist.get(2).saque(50);
+		
+		System.out.println("\nConteudos: " + contalist);
+		
+		contalist.remove(0);
+		
+        System.out.println("\nTotal de contas: " + contalist.size());
+		System.out.println("Conteudos: " + contalist);
+		
+		System.out.println(contalist.get(0));
+		System.out.println(contalist.get(1));
+	}
+}
+
