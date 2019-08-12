@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+public class CestaFrutas implements Runnable {
+	private String nomeThread;
+	
+	public CestaFrutas(String name) {
+		nomeThread = name;
+	}
+	public void run() {
+		System.out.println(nomeThread + " iniciando.");
+		ArrayList<String> a1 = new ArrayList<String>();
+		try {
+			a1.add("banana");
+			a1.add("pera");
+			a1.add("abacaxi");
+			for(int i = 0; i< a1.size(); i++) {
+				Thread.sleep(1000);
+				System.out.print("\n" + a1.get(i) + " ");
+			}
+		}catch (InterruptedException exc) {
+			System.out.println(nomeThread + " interrompida.");
+		}
+		System.out.println("\n" + nomeThread + " terminando.");
+	}
+}
+
+public class TestaFrutas {
+	public static void main(String[] args) {
+		System.out.println("Thread principal iniciando.");
+		CestaFrutas mc = new CestaFrutas("Cesta #1");
+		Thread newThrd = new Thread (mc);
+		newThrd.start();
+		try {
+			Thread.sleep(5000);
+		}catch(InterruptedException exc) {
+			System.out.println("Thread principal interrompida");
+		}
+		System.out.println("Thread principal finalizando");
+	}
+}
